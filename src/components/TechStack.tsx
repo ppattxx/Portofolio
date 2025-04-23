@@ -12,8 +12,8 @@ export const TechStack = () => {
       className: "h-10 w-14",
     },
     {
-      title: "AWS",
-      src: "/images/logos/aws.webp",
+      title: "React.js",
+      src: "/images/logos/Reactjs.png",
 
       className: "h-10 w-10",
     },
@@ -24,35 +24,35 @@ export const TechStack = () => {
       className: "h-10 w-8",
     },
     {
-      title: "Framer Motion",
-      src: "/images/logos/framer.webp",
+      title: "Java",
+      src: "/images/logos/java.png",
 
       className: "h-10 w-10",
     },
     {
-      title: "Node",
-      src: "/images/logos/node.png",
+      title: "Flutter",
+      src: "/images/logos/flutter.png",
 
       className: "h-10 w-12",
     },
     {
+      title: "Aws",
+      src: "/images/logos/aws.webp",
+
+      className: "h-10 w-10",
+    },    
+    {
       title: "Tailwind",
       src: "/images/logos/tailwind.png",
 
-      className: "h-10 w-24",
-    },
-    {
-      title: "Vercel",
-      src: "/images/logos/vercel.png",
-
-      className: "h-10 w-24",
+      className: "h-10 w-30",
     },
   ];
   return (
     <div>
       <Heading
         as="h2"
-        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4"
+        className="font-black text-lg md:text-lg lg:text-lg mt-20 mb-4 text-stone-400"
       >
         Tech Stack
       </Heading>
