@@ -1,4 +1,5 @@
 import {
+  IconBrandGithub,
   IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandTwitter,
@@ -11,11 +12,11 @@ export const socials = [
     label: "Instagram",
     icon: IconBrandInstagram,
   },
-  // {
-  //   href: "https://linkedin.com/in/manuarora28",
-  //   label: "LinkedIn",
-  //   icon: IconBrandLinkedin,
-  // },
+  {
+    href: "https://github.com/ppattxx",
+    label: "Github",
+    icon: IconBrandGithub,
+  },
   // {
   //   href: "https://youtube.com/maninthere",
   //   label: "YouTube",

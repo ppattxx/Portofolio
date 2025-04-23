@@ -39,10 +39,10 @@ export default function RootLayout({
         <div className="flex-1 overflow-y-auto relative z-10">
           <div className="min-h-screen lg:rounded-tl-xl border border-transparent lg:border-neutral-200 backdrop-blur-sm bg-black/30">
             {children}
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       </body>
     </html>
   );
-}
+} 

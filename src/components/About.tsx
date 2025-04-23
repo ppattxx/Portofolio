@@ -6,10 +6,10 @@ import { motion } from "framer-motion";
 
 export default function About() {
   const images = [
-    "/images/Mobile.png",
-    "/images/Redis.png",
-    "/images/Quiz.png",
-    "/images/Scater.png",
+    "https://images.unsplash.com/photo-1692544350322-ac70cfd63614?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1692374227159-2d3592f274c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1692005561659-cdba32d1e4a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1692445381633-7999ebc03730?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
   ];
   return (
     <div>
@@ -32,9 +32,9 @@ export default function About() {
             <Image
               src={image}
               width={200}
-              height={600}
+              height={200}
               alt="about"
-              className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-80 hover:rotate-0 transition duration-200"
+              className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-40 hover:rotate-0 transition duration-200"
             />
           </motion.div>
         ))}
@@ -47,7 +47,7 @@ export default function About() {
         <Paragraph className=" mt-4 text-stone-400">
           Since the beginning of my journey in tech, I&apos;ve been fascinated by how lines of code
           can evolve into intuitive, responsive, and elegant applications. Whether it&apos;s
-          building mobile apps with Flutter or crafting pixel-perfect user interfaces with React
+          building mobile apps with Flutter or crafting pixel perfect user interfaces with React
           and Tailwind CSS, I love turning ideas into real, impactful solutions that blend
           functionality with aesthetic charm.
         </Paragraph>

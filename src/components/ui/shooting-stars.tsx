@@ -119,7 +119,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     // Jalankan spawner terus menerus
     const loopSpawner = () => {
       spawnStar();
-      timeoutId = setTimeout(loopSpawner, 1000); // cek setiap 1 detik
+      timeoutId = setTimeout(loopSpawner, 1000);
     };
 
     loopSpawner();
