@@ -25,13 +25,13 @@ export const TechStack = () => {
     },
     {
       title: "Java",
-      src: "/images/logos/java.png",
+      src: "/images/logos/Java.png",
 
       className: "h-10 w-10",
     },
     {
       title: "Flutter",
-      src: "/images/logos/flutter.png",
+      src: "/images/logos/Flutter.png",
 
       className: "h-10 w-12",
     },
