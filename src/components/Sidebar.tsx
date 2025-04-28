@@ -12,8 +12,8 @@ import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconLayoutSidebarLeftCollapse, IconLayoutSidebarRightCollapse } from "@tabler/icons-react";
 import { isMobile } from "@/lib/utils";
-import { StarsBackground } from "@/components/ui/stars-background"; // pastikan path benar
-import { ShootingStars } from "@/components/ui/shooting-stars";  // Pastikan path sesuai
+import { StarsBackground } from "@/components/ui/stars-background";
+import { ShootingStars } from "@/components/ui/shooting-stars"; 
 
 export const Sidebar = () => {
   const [open, setOpen] = useState(isMobile() ? false : true);
@@ -48,9 +48,9 @@ export const Sidebar = () => {
               <SidebarHeader />
               <Navigation setOpen={setOpen} />
             </div>
-            {/* <div onClick={() => isMobile() && setOpen(false)}>
+            <div onClick={() => isMobile() && setOpen(false)}>
               <Badge href="/resume" text="Read Resume" />
-            </div> */}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
