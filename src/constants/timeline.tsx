@@ -2,7 +2,7 @@ export const timeline = [
   {
     company: "Panasonic Manufacturing Indonesia",
     title: "Developer",
-    date: "Jan 2025 - June 2025",
+    date: "Jan 2025 - Jun 2025",
     description: "Building systems to improve manufacturing and logistics processes",
     responsibilities: [
       "Developed a desktop web application for checking OK/NG (Pass/Fail) status of spare parts before production",
