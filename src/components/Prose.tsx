@@ -11,7 +11,7 @@ export function Prose({
     <div
       className={clsx(
         className,
-        "prose prose-sm prose-blue max-w-none prose-p:text-secondary prose-headings:text-primary"
+        "prose prose-invert prose-sm max-w-none prose-p:text-[#c7c7c7] prose-headings:text-white prose-a:text-[rgb(var(--accent))] prose-strong:text-white prose-code:text-[rgb(var(--accent))] prose-pre:glass"
       )}
     >
       {children}

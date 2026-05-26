@@ -2,17 +2,160 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tambahkan ini di atas atau bawah import Tailwind */
-html,
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  :root {
+    --bg: 10 10 18;
+    --text: 255 255 255;
+    --muted: 199 199 199;
+    --accent: 56 189 248;
+    --border: 255 255 255;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    --blob-blue: rgba(45, 72, 152, 0.75);
+    --blob-cyan: #7aebfb;
+    --blob-purple: #7c39a3;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    color: rgb(var(--text));
+    background-color: rgb(var(--bg));
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  ::selection {
+    background: rgba(56, 189, 248, 0.3);
+  }
+
+  .wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .wrapper {
+      padding: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .wrapper {
+      padding: 0 3rem;
+    }
+  }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1rem;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05), 0 0 60px rgba(56, 189, 248, 0.03);
+    transform: translateY(-2px);
+  }
+
+  .card-hover {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .card-hover:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.05), 0 0 60px rgba(56, 189, 248, 0.03);
+    transform: translateY(-2px);
+  }
+
+  .tag-pill {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.5) 100%);
+    @apply px-3 py-1 text-sm rounded-full font-medium text-[rgb(var(--bg))];
+  }
+
+  .section-label {
+    @apply text-white/70 text-sm md:text-base;
+  }
+
+  .section-title {
+    @apply font-black text-4xl lg:text-5xl text-white mt-2;
+  }
+
+  .scroller {
+    mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, white 20%, white 80%, transparent);
+  }
+
+  .blob-blue {
+    background: rgba(45, 72, 152, 0.75);
+    filter: blur(200px);
+    -webkit-filter: blur(200px);
+    transform: rotate(-53.13deg);
+  }
+
+  .blob-cyan {
+    background: #7aebfb;
+    filter: blur(190px);
+    -webkit-filter: blur(190px);
+  }
+
+  .blob-purple {
+    background: #7c39a3;
+    filter: blur(175px);
+    -webkit-filter: blur(175px);
+  }
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+.animate-scroll-reverse {
+  animation: scroll 30s linear infinite reverse;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}

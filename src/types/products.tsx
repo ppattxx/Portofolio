@@ -8,5 +8,8 @@ export type Product = {
   href: string;
   slug?: string;
   stack?: string[];
+  role?: string;
+  date?: string;
+  results?: string;
   content?: React.ReactNode | string;
 };

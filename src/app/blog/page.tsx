@@ -1,16 +1,12 @@
-import { Container } from "@/components/Container";
-import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
-import { Paragraph } from "@/components/Paragraph";
-import { Products } from "@/components/Products";
 import { getAllBlogs } from "../../../lib/getAllBlogs";
 import { Blogs } from "@/components/Blogs";
+import { Heading } from "@/components/Heading";
+import { Paragraph } from "@/components/Paragraph";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blogs | John Doe",
-  description:
-    "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+  title: "Blog | Dava Rajif",
+  description: "",
 };
 
 export default async function Blog() {
@@ -18,14 +14,15 @@ export default async function Blog() {
   const data = blogs.map(({ component, ...meta }) => meta);
 
   return (
-    <Container>
-      <span className="text-4xl">📝</span>
-      <Heading className="font-black pb-4">I write about technology</Heading>
-      <Paragraph className="pb-10">
-        Ever since <Highlight> I was a kid</Highlight>, I&apos;ve been
-        fascinated by technology.
+    <div className="min-h-screen wrapper py-20 md:py-28">
+      <p className="section-label">Read insightful articles here</p>
+      <Heading className="font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-2 mb-4">
+        My Latest Writings.
+      </Heading>
+      <Paragraph className="max-w-xl mb-8 md:mb-10 text-[#c7c7c7] text-sm md:text-base">
+        I write about technology and web development.
       </Paragraph>
       <Blogs blogs={data} />
-    </Container>
+    </div>
   );
 }

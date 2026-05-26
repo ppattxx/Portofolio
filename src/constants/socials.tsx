@@ -3,7 +3,6 @@ import {
   IconBrandInstagram,
   IconBrandLinkedin,
   IconBrandTwitter,
-  IconBrandYoutube,
 } from "@tabler/icons-react";
 
 export const socials = [
@@ -17,9 +16,9 @@ export const socials = [
     label: "Github",
     icon: IconBrandGithub,
   },
-  // {
-  //   href: "https://youtube.com/maninthere",
-  //   label: "YouTube",
-  //   icon: IconBrandYoutube,
-  // },
+  {
+    href: "https://linkedin.com/in/dava-rajif",
+    label: "LinkedIn",
+    icon: IconBrandLinkedin,
+  },
 ];

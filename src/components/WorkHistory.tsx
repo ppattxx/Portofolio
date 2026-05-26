@@ -1,54 +1,36 @@
 "use client";
 import { timeline } from "@/constants/timeline";
 import React from "react";
-import { Paragraph } from "./Paragraph";
-import { Heading } from "./Heading";
-import {
-  IconCheck,
-  IconCheckbox,
-  IconCircleCheckFilled,
-} from "@tabler/icons-react";
+import { IconCircleCheckFilled } from "@tabler/icons-react";
 
 export const WorkHistory = () => {
   return (
-    <div>
+    <div className="space-y-5 md:space-y-6">
       {timeline.map((item, index) => (
         <div
-          className="flex md:flex-row flex-col space-y-10 md:space-y-0 space-x-10 my-20 relative"
           key={`timeline-${index}`}
+          className="glass rounded-2xl p-5 md:p-6 card-hover"
         >
-          <Paragraph className="w-15">{item.date}</Paragraph>
-          <div>
-            <Heading
-              as="h5"
-              className="text-lg md:text-lg lg:text-lg text-emerald-500"
-            >
-              {item.company}
-            </Heading>
-            <Paragraph className="text-base md:text-base lg:text-base font-semibold">
-              {item.title}
-            </Paragraph>
-            <Paragraph className="text-sm md:text-sm lg:text-sm mb-4">
-              {item.description}
-            </Paragraph>
-
-            {item.responsibilities.map((responsibility, index) => (
-              <Step key={responsibility}>{responsibility}</Step>
+          <p className="text-xs md:text-sm text-[#c7c7c7] mb-1">{item.date}</p>
+          <h3 className="text-lg md:text-xl font-bold text-white mb-1">
+            {item.company}
+          </h3>
+          <p className="text-sm font-medium text-white/70 mb-3">
+            {item.title}
+          </p>
+          <p className="text-xs md:text-sm text-[#c7c7c7]/80 mb-4 leading-relaxed">
+            {item.description}
+          </p>
+          <ul className="space-y-2">
+            {item.responsibilities.map((responsibility, idx) => (
+              <li key={idx} className="flex gap-2 text-xs md:text-sm text-[#c7c7c7]/80">
+                <IconCircleCheckFilled className="h-3.5 w-3.5 md:h-4 md:w-4 mt-0.5 shrink-0 text-white/40" />
+                <span className="leading-relaxed">{responsibility}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       ))}
-    </div>
-  );
-};
-
-const Step = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="flex space-x-1 items-start my-2">
-      <IconCircleCheckFilled className="h-3 w-4 mt-1 text-neutral-300" />
-      <Paragraph className="text-sm md:text-sm lg:text-sm">
-        {children}
-      </Paragraph>
     </div>
   );
 };

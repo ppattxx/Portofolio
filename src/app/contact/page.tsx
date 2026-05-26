@@ -1,28 +1,27 @@
 import { Contact } from "@/components/Contact";
-import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
-import { Highlight } from "@/components/Highlight";
 import { Paragraph } from "@/components/Paragraph";
-import { Products } from "@/components/Products";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Contact | John Doe",
-  description:
-    "John Doe is a developer, writer and speaker. He is a digital nomad and travels around the world while working remotely.",
+  title: "Contact | Dava Rajif",
+  description: "",
 };
 
-export default function Projects() {
+export default function ContactPage() {
   return (
-    <Container>
-      <span className="text-4xl">✉️</span>
-      <Heading className="font-black mb-2">Contact Me</Heading>
-      <Paragraph className="mb-10 max-w-xl">
-        Reach out to me over email or fill up this contact form. I will get back
-        to you ASAP - I promise.{" "}
+    <div className="min-h-screen wrapper py-20 md:py-28">
+      <p className="section-label">Let&apos;s get in touch</p>
+      <Heading className="font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-2 mb-4">
+        Contact Me.
+      </Heading>
+      <Paragraph className="max-w-xl mb-8 md:mb-10 text-[#c7c7c7] text-sm md:text-base">
+        Have a project idea or just want to say hi? Fill out the form below
+        and I&apos;ll get back to you as soon as possible.
       </Paragraph>
-      <Contact />
-    </Container>
+      <div className="max-w-2xl">
+        <Contact />
+      </div>
+    </div>
   );
 }
