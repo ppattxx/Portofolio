@@ -7,11 +7,10 @@ import { IconMenu2, IconX } from "@tabler/icons-react";
 const isLandingPage = (pathname: string) => pathname === "/";
 
 const navItems = [
-  { href: "#projects", label: "Projects" },
-  { href: "#companies", label: "Companies" },
-  { href: "#skills", label: "Skills" },
-  { href: "#tech-stack", label: "Tech Stack" },
-  { href: "#contact", label: "Contact" },
+  { href: "#projects", label: "Projects", scrollId: "projects" },
+  { href: "#companies", label: "Companies", scrollId: "companies" },
+  { href: "#tech-stack", label: "Tech Stack", scrollId: "tech-stack" },
+  { href: "#contact", label: "Contact", scrollId: "contact" },
 ];
 
 function NavLink({ href, label, onClick }: { href: string; label: string; onClick?: () => void }) {
@@ -42,7 +41,7 @@ function NavLink({ href, label, onClick }: { href: string; label: string; onClic
           {label.split("").map((char, i) => (
             <span
               key={i}
-              className="relative inline-block transition-transform duration-300 group-hover:-translate-y-full"
+              className="relative inline-block transition-transform duration-300 group-hover:-translate-y-full text-white"
               style={{ transitionDelay: `${i * 30}ms` }}
             >
               {char}

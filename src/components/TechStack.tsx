@@ -1,24 +1,61 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import {
+  SiGitlab,
+  SiPhp,
+  SiTypescript,
+  SiFlutter,
+  SiReact,
+  SiFigma,
+  SiNodedotjs,
+  SiDart,
+  SiNextdotjs,
+  SiLaravel,
+  SiTailwindcss,
+  SiCss,
+  SiPostgresql,
+  SiHtml5,
+  SiJavascript,
+} from "react-icons/si";
+import type { IconType } from "react-icons";
 
-const techRow1 = [
-  "Next.js", "React.js", "JavaScript", "PHP", "Python",
+interface TechItem {
+  name: string;
+  Icon?: IconType;
+}
+
+const techItems: TechItem[] = [
+  { name: "Gitlab", Icon: SiGitlab },
+  { name: "PHP", Icon: SiPhp },
+  { name: "TypeScript", Icon: SiTypescript },
+  { name: "Flutter", Icon: SiFlutter },
+  { name: "React", Icon: SiReact },
+  { name: "Figma", Icon: SiFigma },
+  { name: "NodeJS", Icon: SiNodedotjs },
+  { name: "Dart", Icon: SiDart },
+  { name: "NextJS", Icon: SiNextdotjs },
+  { name: "Laravel", Icon: SiLaravel },
+  { name: "Tailwind", Icon: SiTailwindcss },
+  { name: "CSS", Icon: SiCss },
+  { name: "Postgres", Icon: SiPostgresql },
+  { name: "HTML", Icon: SiHtml5 },
+  { name: "JavaScript", Icon: SiJavascript },
 ];
 
-const techRow2 = [
-  "C", "C#", "CodeIgniter", "Laravel", "MySQL", "PostgreSQL",
-];
+const rowOne = techItems.slice(0, 9);
+const rowTwo = techItems.slice(4, 13);
+const rowThree = techItems.slice(9, 18);
 
-const techRow3 = [
-  "Git", "GitLab", "Figma", "CSS", "HTML",
-];
-
-function TechPill({ name }: { name: string }) {
+function TechPill({ item }: { item: TechItem }) {
+  const Icon = item.Icon;
   return (
-    <li className="max-w-full relative rounded-lg border flex-shrink-0 border-white/20 px-4 py-2 glass">
-      <span className="text-white text-sm whitespace-nowrap">{name}</span>
-    </li>
+    <div className="flex items-center gap-2 px-4 py-2 rounded-md border border-white/40 bg-white/5 text-white/90 text-sm font-medium whitespace-nowrap">
+      <span className="text-white/80">
+        {Icon ? <Icon size={18} /> : <span className="text-[11px] font-semibold">{item.name.slice(0, 2).toUpperCase()}</span>}
+      </span>
+      <span>{item.name}</span>
+    </div>
   );
 }
 
@@ -48,48 +85,48 @@ export const TechStack = () => {
           className="section-label"
           initial={{ opacity: 0, y: 25 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.1 }}
         >
           Things I use to develop all my projects
         </motion.p>
         <motion.h2
-          className="font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-2"
+          className="font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-2 mb-12 md:mb-16"
           initial={{ opacity: 0, y: 25 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.1, delay: 0.1 }}
         >
           Tech Stack.
         </motion.h2>
-      </div>
 
-      <motion.div
-        className="mt-10 md:mt-12 mx-auto w-full flex flex-col gap-y-4"
-        initial={{ opacity: 0, y: 25 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <div className="scroller relative z-20">
-          <ul className="animate-scroll flex gap-3 md:gap-4 py-0 w-max">
-            {[...techRow1, ...techRow1].map((tech, i) => (
-              <TechPill key={`${tech}-${i}`} name={tech} />
-            ))}
-          </ul>
-        </div>
-        <div className="scroller relative z-20">
-          <ul className="animate-scroll-reverse flex gap-3 md:gap-4 py-0 w-max">
-            {[...techRow2, ...techRow2].map((tech, i) => (
-              <TechPill key={`${tech}-${i}`} name={tech} />
-            ))}
-          </ul>
-        </div>
-        <div className="scroller relative z-20">
-          <ul className="animate-scroll flex gap-3 md:gap-4 py-0 w-max">
-            {[...techRow3, ...techRow3].map((tech, i) => (
-              <TechPill key={`third-${tech}-${i}`} name={tech} />
-            ))}
-          </ul>
-        </div>
-      </motion.div>
+        <motion.div
+          className="space-y-4 md:space-y-5"
+          initial={{ opacity: 0 }}
+          animate={isVisible ? { opacity: 1 } : {}}
+          transition={{ duration: 0.1, delay: 0.2 }}
+        >
+          <div className="scroller overflow-hidden">
+            <div className="flex w-max gap-3 animate-scroll">
+              {[...rowOne, ...rowOne].map((item, index) => (
+                <TechPill key={`${item.name}-row1-${index}`} item={item} />
+              ))}
+            </div>
+          </div>
+          <div className="scroller overflow-hidden">
+            <div className="flex w-max gap-3 animate-scroll-reverse">
+              {[...rowTwo, ...rowTwo].map((item, index) => (
+                <TechPill key={`${item.name}-row2-${index}`} item={item} />
+              ))}
+            </div>
+          </div>
+          <div className="scroller overflow-hidden">
+            <div className="flex w-max gap-3 animate-scroll">
+              {[...rowThree, ...rowThree].map((item, index) => (
+                <TechPill key={`${item.name}-row3-${index}`} item={item} />
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 };
