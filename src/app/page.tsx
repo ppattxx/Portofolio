@@ -45,14 +45,14 @@ export default function Home() {
 
           {/* Right side - Profile Image */}
           <div className="flex justify-center md:justify-end">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl hover:shadow-white/20 transition-all duration-300">
+            <div className="relative w-48 sm:w-64 h-48 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl hover:shadow-white/20 transition-all duration-300 max-w-full">
               <Image
                 src="/images/Profile.png"
                 alt="Dava Rajif"
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 256px, 320px"
+                sizes="(max-width: 640px) 192px, (max-width: 768px) 256px, 320px"
               />
             </div>
           </div>

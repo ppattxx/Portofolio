@@ -40,7 +40,7 @@ export const ContactCTA = () => {
       >
         Let&apos;s get in touch
       </motion.p>
-      <div className="flex flex-col gap-y-2 md:gap-y-3 mt-6">
+      <div className="flex flex-col gap-y-1 md:gap-y-3 mt-4 md:mt-6">
         {[
           "Want to have coffee together?",
           "Have any project ideas?",
@@ -64,7 +64,7 @@ export const ContactCTA = () => {
         animate={isVisible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 md:gap-x-8 flex-wrap break-all">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-8 md:gap-x-8 flex-wrap break-all">
           <div className="flex items-center gap-x-2">
             <div className="bg-white rounded-full p-1.5 shrink-0">
               <IconMail size={16} className="text-[#1a232e]" />

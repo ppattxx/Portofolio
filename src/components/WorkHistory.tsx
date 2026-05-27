@@ -8,7 +8,6 @@ import {
   IconSchool,
 } from "@tabler/icons-react";
 
-// Sesuaikan icon per item — bisa tambah field `icon` di constants/timeline.ts
 const ICONS = [IconBriefcase, IconSchool, IconCode, IconRocket];
 
 export const WorkHistory = () => {
@@ -17,7 +16,6 @@ export const WorkHistory = () => {
   const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Scroll-triggered card animation
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -33,7 +31,6 @@ export const WorkHistory = () => {
 
     itemRefs.current.forEach((el) => el && observer.observe(el));
 
-    // Timeline line fill on scroll
     const updateLine = () => {
       if (!lineRef.current || !wrapRef.current) return;
       const wrapRect = wrapRef.current.getBoundingClientRect();
@@ -55,19 +52,26 @@ export const WorkHistory = () => {
   return (
     <>
       <style>{`
-        .tl-card-left  { transform: translateX(-36px); opacity: 0; transition: transform 0.6s cubic-bezier(.16,1,.3,1), opacity 0.5s ease; }
-        .tl-card-right { transform: translateX(36px);  opacity: 0; transition: transform 0.6s cubic-bezier(.16,1,.3,1), opacity 0.5s ease; }
-        .tl-visible .tl-card-left,
-        .tl-visible .tl-card-right { transform: translateX(0); opacity: 1; }
+        .tl-card {
+          opacity: 0;
+          transition: transform 0.6s cubic-bezier(.16,1,.3,1), opacity 0.5s ease;
+        }
+        .tl-visible .tl-card {
+          opacity: 1;
+          transform: translateX(0);
+        }
+        @media (min-width: 768px) {
+          .tl-card-left  { transform: translateX(-36px); }
+          .tl-card-right { transform: translateX(36px); }
+        }
       `}</style>
 
       <div ref={wrapRef} className="relative py-2">
-        {/* Center line */}
-        <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-white/[0.07]">
+        <div className="absolute left-[21px] md:left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-white/[0.07]">
           <div ref={lineRef} className="absolute top-0 left-0 w-full bg-white/20 transition-[height] duration-100" style={{ height: "0%" }} />
         </div>
 
-        <div className="space-y-10">
+        <div className="space-y-8 md:space-y-10">
           {timeline.map((item, index) => {
             const isLeft = index % 2 === 0;
             const Icon = ICONS[index % ICONS.length];
@@ -77,11 +81,10 @@ export const WorkHistory = () => {
                 key={index}
                 ref={(el) => { itemRefs.current[index] = el; }}
                 data-delay={isLeft ? "0" : "100"}
-                className={`flex items-center ${isLeft ? "flex-row" : "flex-row-reverse"}`}
+                className={`flex items-start md:items-center ${isLeft ? "md:flex-row" : "md:flex-row-reverse"} flex-row`}
               >
-                {/* Card */}
-                <div className={`flex-1 ${isLeft ? "pr-4" : "pl-4"} max-w-[calc(50%-52px)]`}>
-                  <div className={`${isLeft ? "tl-card-left" : "tl-card-right"} group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors hover:border-white/[0.16] hover:bg-white/[0.055]`}>
+                <div className={`order-2 md:order-none flex-1 pl-[52px] md:pl-0 md:max-w-[calc(50%-52px)] ${isLeft ? "md:pr-4" : "md:pl-4"}`}>
+                  <div className="tl-card group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors hover:border-white/[0.16] hover:bg-white/[0.055]">
                     <h3 className="mb-0.5 text-sm font-semibold leading-snug text-white/88">
                       {item.company}
                     </h3>
@@ -104,18 +107,16 @@ export const WorkHistory = () => {
                   </div>
                 </div>
 
-                {/* Center node */}
-                <div className="z-10 flex w-[104px] shrink-0 flex-col items-center gap-1.5">
+                <div className="order-1 md:order-none z-10 flex w-[42px] md:w-[104px] shrink-0 flex-col items-center gap-1.5">
                   <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full border border-white/[0.13] bg-white/[0.05] text-white/45 transition-all hover:border-white/[0.28] hover:bg-white/10 hover:text-white/85">
                     <Icon size={16} />
                   </div>
-                  <span className="text-center text-[11px] leading-snug text-white/35">
+                  <span className="text-center text-[11px] leading-snug text-white/35 hidden md:block">
                     {item.date}
                   </span>
                 </div>
 
-                {/* Empty spacer sisi lain */}
-                <div className="flex-1 max-w-[calc(50%-52px)]" />
+                <div className="hidden md:block flex-1 max-w-[calc(50%-52px)]" />
               </div>
             );
           })}

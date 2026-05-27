@@ -8,7 +8,7 @@ import { IconArrowLeft } from "@tabler/icons-react";
 export function BlogLayout({ children, meta }: any) {
   return (
     <div className="min-h-screen wrapper py-20 md:py-28">
-      <article className="max-w-3xl mx-auto">
+      <article className="max-w-3xl mx-auto w-full">
         <header className="flex flex-col">
           <Link
             href="/blog"
@@ -27,13 +27,13 @@ export function BlogLayout({ children, meta }: any) {
           </time>
 
           {meta.image && (
-            <div className="w-full rounded-2xl overflow-hidden glass mb-6 md:mb-8">
+            <div className="w-full rounded-xl md:rounded-2xl overflow-hidden glass mb-6 md:mb-8">
               <Image
                 src={meta.image}
                 alt={meta.title || "Blog thumbnail"}
                 height="800"
                 width="800"
-                className="w-full object-cover max-h-72 md:max-h-96"
+                className="w-full object-cover max-h-56 md:max-h-96"
               />
             </div>
           )}

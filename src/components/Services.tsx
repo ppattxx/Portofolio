@@ -67,9 +67,9 @@ export const Services = () => {
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
           >
-            <div className="rounded-2xl min-h-[160px] md:min-h-[180px] flex flex-col items-center justify-center glass card-hover gap-4 px-6 py-8">
-              <skill.icon className="text-white" size={44} strokeWidth={1.5} />
-              <h3 className="text-white text-lg md:text-[20px] font-bold text-center max-w-40">
+            <div className="rounded-2xl min-h-[140px] sm:min-h-[160px] md:min-h-[180px] flex flex-col items-center justify-center glass card-hover gap-3 md:gap-4 px-4 md:px-6 py-6 md:py-8">
+              <skill.icon className="text-white w-9 h-9 sm:w-11 sm:h-11" strokeWidth={1.5} />
+              <h3 className="text-white text-base sm:text-lg md:text-[20px] font-bold text-center max-w-40">
                 {skill.title}
               </h3>
             </div>

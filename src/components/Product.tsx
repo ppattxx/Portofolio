@@ -52,7 +52,7 @@ export const SingleProduct = ({ product }: { product: Product }) => {
                   alt={`${product.title} ${idx + 1}`}
                   height={80}
                   width={120}
-                  className="h-14 w-20 md:h-16 md:w-24 object-cover"
+                  className="h-12 w-16 sm:h-14 sm:w-20 md:h-16 md:w-24 object-cover"
                 />
               </button>
             ))}

@@ -13,6 +13,14 @@ const navItems = [
   { href: "#contact", label: "Contact", scrollId: "contact" },
 ];
 
+const pageLinks = [
+  { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+  { href: "/resume", label: "Resume" },
+  { href: "/contact", label: "Contact" },
+];
+
 function NavLink({ href, label, onClick }: { href: string; label: string; onClick?: () => void }) {
   const pathname = usePathname();
   const isActive = isLandingPage(pathname) && href.startsWith("#") ? false : pathname === href;
@@ -95,8 +103,9 @@ export const Navbar = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/10">
-          <div className="wrapper py-4 space-y-1">
+        <div className="md:hidden border-t border-white/10 max-h-[80vh] overflow-y-auto">
+          <div className="wrapper py-4 space-y-3">
+            <p className="text-xs uppercase tracking-widest text-white/30 px-3">On this page</p>
             {navItems.map((item) => {
               const isActive = isLandingPage(pathname) && item.href.startsWith("#") ? false : pathname === item.href;
               const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -107,6 +116,26 @@ export const Navbar = () => {
                 }
                 setMobileOpen(false);
               };
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleClick}
+                  className={`block py-2.5 px-3 rounded-lg text-sm transition-colors ${
+                    isActive
+                      ? "text-white bg-white/5"
+                      : "text-white/60 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            <hr className="border-white/10 my-3" />
+            <p className="text-xs uppercase tracking-widest text-white/30 px-3">Pages</p>
+            {pageLinks.map((item) => {
+              const isActive = pathname === item.href;
+              const handleClick = () => setMobileOpen(false);
               return (
                 <Link
                   key={item.href}
