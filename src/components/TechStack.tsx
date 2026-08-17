@@ -1,132 +1,95 @@
 "use client";
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import {
-  SiGitlab,
-  SiPhp,
-  SiTypescript,
-  SiFlutter,
-  SiReact,
-  SiFigma,
-  SiNodedotjs,
   SiDart,
-  SiNextdotjs,
-  SiLaravel,
-  SiTailwindcss,
-  SiCss,
-  SiPostgresql,
-  SiHtml5,
+  SiDocker,
+  SiExpress,
+  SiFigma,
+  SiFlutter,
+  SiGit,
+  SiGitlab,
   SiJavascript,
+  SiLaravel,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPandas,
+  SiPhp,
+  SiPython,
+  SiReact,
+  SiScikitlearn,
+  SiSqlite,
+  SiTailwindcss,
+  SiTypescript,
+  SiVite,
 } from "react-icons/si";
 import type { IconType } from "react-icons";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
-interface TechItem {
-  name: string;
-  Icon?: IconType;
-}
+type TechItem = { name: string; Icon: IconType; color: string };
 
-const techItems: TechItem[] = [
-  { name: "Gitlab", Icon: SiGitlab },
-  { name: "PHP", Icon: SiPhp },
-  { name: "TypeScript", Icon: SiTypescript },
-  { name: "Flutter", Icon: SiFlutter },
-  { name: "React", Icon: SiReact },
-  { name: "Figma", Icon: SiFigma },
-  { name: "NodeJS", Icon: SiNodedotjs },
-  { name: "Dart", Icon: SiDart },
-  { name: "NextJS", Icon: SiNextdotjs },
-  { name: "Laravel", Icon: SiLaravel },
-  { name: "Tailwind", Icon: SiTailwindcss },
-  { name: "CSS", Icon: SiCss },
-  { name: "Postgres", Icon: SiPostgresql },
-  { name: "HTML", Icon: SiHtml5 },
-  { name: "JavaScript", Icon: SiJavascript },
+const tech: TechItem[] = [
+  { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
+  { name: "React", Icon: SiReact, color: "#61DAFB" },
+  { name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF" },
+  { name: "Tailwind", Icon: SiTailwindcss, color: "#38BDF8" },
+  { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+  { name: "Vite", Icon: SiVite, color: "#A855F7" },
+  { name: "Laravel", Icon: SiLaravel, color: "#FF2D20" },
+  { name: "PHP", Icon: SiPhp, color: "#8892BF" },
+  { name: "Node.js", Icon: SiNodedotjs, color: "#5FA04E" },
+  { name: "Express", Icon: SiExpress, color: "#FFFFFF" },
+  { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
+  { name: "SQLite", Icon: SiSqlite, color: "#59B6E4" },
+  { name: "Flutter", Icon: SiFlutter, color: "#54C5F8" },
+  { name: "Dart", Icon: SiDart, color: "#2BB7F6" },
+  { name: "Python", Icon: SiPython, color: "#FFD343" },
+  { name: "scikit-learn", Icon: SiScikitlearn, color: "#F89939" },
+  { name: "Pandas", Icon: SiPandas, color: "#C9CBCF" },
+  { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+  { name: "Git", Icon: SiGit, color: "#F05032" },
+  { name: "GitLab", Icon: SiGitlab, color: "#FC6D26" },
+  { name: "Figma", Icon: SiFigma, color: "#F24E1E" },
 ];
 
-const rowOne = techItems.slice(0, 9);
-const rowTwo = techItems.slice(4, 13);
-const rowThree = techItems.slice(9, 18);
+const rows = [tech.slice(0, 7), tech.slice(7, 14), tech.slice(14, 21)];
 
-function TechPill({ item }: { item: TechItem }) {
-  const Icon = item.Icon;
-  return (
-    <div className="flex items-center gap-2 px-4 py-2 rounded-md border border-white/40 bg-white/5 text-white/90 text-sm font-medium whitespace-nowrap">
-      <span className="text-white/80">
-        {Icon ? <Icon size={18} /> : <span className="text-[11px] font-semibold">{item.name.slice(0, 2).toUpperCase()}</span>}
-      </span>
-      <span>{item.name}</span>
+const TechPill = ({ item }: { item: TechItem }) => (
+  <div className="group flex shrink-0 items-center gap-2.5 rounded-xl border border-white/[0.08] bg-white/[0.035] px-4 py-2.5 text-sm font-medium text-white/70 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] hover:text-white">
+    <item.Icon
+      size={18}
+      style={{ color: item.color }}
+      className="opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+    />
+    <span className="whitespace-nowrap">{item.name}</span>
+  </div>
+);
+
+export const TechStack = () => (
+  <section id="tech-stack" className="relative py-20 md:py-32">
+    <div className="wrapper">
+      <SectionHeading
+        label="Toolbox"
+        title="Tech I work with."
+        description="The stack behind the projects above — picked for the job, not for the résumé."
+      />
     </div>
-  );
-}
 
-export const TechStack = () => {
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section id="tech-stack" ref={ref} className="relative py-20 md:py-36">
-      <div className="absolute top-[10%] left-[30%] w-80 h-screen blob-blue pointer-events-none" />
-      <div className="wrapper">
-        <motion.p
-          className="section-label"
-          initial={{ opacity: 0, y: 25 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.1 }}
-        >
-          Things I use to develop all my projects
-        </motion.p>
-        <motion.h2
-          className="font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-2 mb-12 md:mb-16"
-          initial={{ opacity: 0, y: 25 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.1, delay: 0.1 }}
-        >
-          Tech Stack.
-        </motion.h2>
-
-        <motion.div
-          className="space-y-4 md:space-y-5"
-          initial={{ opacity: 0 }}
-          animate={isVisible ? { opacity: 1 } : {}}
-          transition={{ duration: 0.1, delay: 0.2 }}
-        >
-          <div className="scroller overflow-hidden">
-            <div className="flex w-max gap-3 animate-scroll">
-              {[...rowOne, ...rowOne].map((item, index) => (
-                <TechPill key={`${item.name}-row1-${index}`} item={item} />
-              ))}
-            </div>
+    <Reveal direction="up" delay={0.12} className="marquee-pause mt-10 space-y-3 md:mt-14 md:space-y-4">
+      {rows.map((row, i) => (
+        <div key={i} className="scroller overflow-hidden">
+          <div
+            className={`flex w-max gap-3 ${
+              i % 2 === 0 ? "animate-scroll" : "animate-scroll-reverse"
+            }`}
+            style={{ animationDuration: `${30 + i * 6}s` }}
+          >
+            {[...row, ...row, ...row].map((item, index) => (
+              <TechPill key={`${item.name}-${i}-${index}`} item={item} />
+            ))}
           </div>
-          <div className="scroller overflow-hidden">
-            <div className="flex w-max gap-3 animate-scroll-reverse">
-              {[...rowTwo, ...rowTwo].map((item, index) => (
-                <TechPill key={`${item.name}-row2-${index}`} item={item} />
-              ))}
-            </div>
-          </div>
-          <div className="scroller overflow-hidden">
-            <div className="flex w-max gap-3 animate-scroll">
-              {[...rowThree, ...rowThree].map((item, index) => (
-                <TechPill key={`${item.name}-row3-${index}`} item={item} />
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+        </div>
+      ))}
+    </Reveal>
+  </section>
+);

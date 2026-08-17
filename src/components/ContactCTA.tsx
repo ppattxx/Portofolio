@@ -1,90 +1,116 @@
 "use client";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { IconMail, IconBrandInstagram, IconBrandGithub } from "@tabler/icons-react";
-import { useEffect, useRef, useState } from "react";
+import {
+  IconArrowUpRight,
+  IconBrandGithub,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconMail,
+} from "@tabler/icons-react";
+import { Reveal } from "./Reveal";
 
-export const ContactCTA = () => {
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+const LINES = ["Have a project", "in mind?", "Let's build it."];
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+const CHANNELS = [
+  {
+    icon: IconMail,
+    label: "Email",
+    value: "acahyadava@gmail.com",
+    href: "mailto:acahyadava@gmail.com",
+  },
+  {
+    icon: IconBrandLinkedin,
+    label: "LinkedIn",
+    value: "/in/dava-rajif",
+    href: "https://linkedin.com/in/dava-rajif",
+  },
+  {
+    icon: IconBrandGithub,
+    label: "GitHub",
+    value: "@ppattxx",
+    href: "https://github.com/ppattxx",
+  },
+  {
+    icon: IconBrandInstagram,
+    label: "Instagram",
+    value: "@acahyadvaa",
+    href: "https://instagram.com/acahyadvaa",
+  },
+];
 
-  const headingVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, delay: 0.1 + i * 0.15 },
-    }),
-  };
+export const ContactCTA = () => (
+  <section id="contact" className="wrapper relative py-20 md:py-32">
+    <Reveal direction="up">
+      <p className="section-label">Get in touch</p>
+    </Reveal>
 
-  return (
-    <section id="contact" ref={ref} className="wrapper pt-24 md:pt-44 pb-20 md:pb-36">
-      <motion.p
-        className="section-label text-base"
-        initial={{ opacity: 0, y: 25 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-      >
-        Let&apos;s get in touch
-      </motion.p>
-      <div className="flex flex-col gap-y-1 md:gap-y-3 mt-4 md:mt-6">
-        {[
-          "Want to have coffee together?",
-          "Have any project ideas?",
-          "Ask something?",
-        ].map((text, i) => (
-          <motion.h2
-            key={text}
-            className="font-extrabold text-white text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-tight sm:leading-none"
-            custom={i}
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={headingVariants}
-          >
-            {text}
-          </motion.h2>
-        ))}
+    <div className="mt-4 md:mt-6">
+      {LINES.map((line, i) => (
+        <motion.h2
+          key={line}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] }}
+          className={`text-3xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-7xl ${
+            i === LINES.length - 1 ? "text-gradient" : "text-white"
+          }`}
+        >
+          {line}
+        </motion.h2>
+      ))}
+    </div>
+
+    <Reveal direction="up" delay={0.25}>
+      <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/50 md:text-base">
+        I&apos;m open to full-time roles, freelance work and interesting collaborations.
+        The fastest way to reach me is email — I usually reply within a day.
+      </p>
+    </Reveal>
+
+    <Reveal direction="up" delay={0.32}>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+        <Link href="/contact">
+          <button className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_30px_-12px_rgba(255,255,255,0.5)] sm:w-auto">
+            Start a conversation
+            <IconArrowUpRight
+              size={16}
+              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </button>
+        </Link>
+        <a href="mailto:acahyadava@gmail.com">
+          <button className="glass card-hover w-full rounded-xl px-6 py-3.5 text-sm font-semibold text-white sm:w-auto">
+            acahyadava@gmail.com
+          </button>
+        </a>
       </div>
-      <motion.div
-        className="mt-8 md:mt-12"
-        initial={{ opacity: 0, y: 25 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-8 md:gap-x-8 flex-wrap break-all">
-          <div className="flex items-center gap-x-2">
-            <div className="bg-white rounded-full p-1.5 shrink-0">
-              <IconMail size={16} className="text-[#1a232e]" />
-            </div>
-            <p className="text-white font-medium text-sm sm:text-base md:text-lg">acahyadava@gmail.com</p>
-          </div>
-          <div className="flex items-center gap-x-2">
-            <div className="bg-white rounded-full p-1.5 shrink-0">
-              <IconBrandInstagram size={16} className="text-[#1a232e]" />
-            </div>
-            <p className="text-white font-medium text-sm sm:text-base md:text-lg">@acahyadvaa</p>
-          </div>
-          <div className="flex items-center gap-x-2">
-            <div className="bg-white rounded-full p-1.5 shrink-0">
-              <IconBrandGithub size={16} className="text-[#1a232e]" />
-            </div>
-            <p className="text-white font-medium text-sm sm:text-base md:text-lg">@ppattxx</p>
-          </div>
-        </div>
-      </motion.div>
-    </section>
-  );
-};
+    </Reveal>
+
+    <div className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {CHANNELS.map((channel, i) => (
+        <Reveal key={channel.label} direction="up" delay={0.1 + i * 0.07}>
+          <a
+            href={channel.href}
+            target={channel.href.startsWith("http") ? "_blank" : undefined}
+            rel="noopener noreferrer"
+            className="glass-card group flex items-center gap-3 p-4"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.04] text-white/60 transition-colors duration-300 group-hover:text-[rgb(var(--accent))]">
+              <channel.icon size={18} />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[11px] uppercase tracking-wider text-white/30">
+                {channel.label}
+              </span>
+              <span className="block truncate text-sm text-white/75 transition-colors group-hover:text-white">
+                {channel.value}
+              </span>
+            </span>
+          </a>
+        </Reveal>
+      ))}
+    </div>
+  </section>
+);

@@ -1,23 +1,16 @@
 /** @type {import('next').NextConfig} */
-import nextMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
-import rehypePrism from "@mapbox/rehype-prism";
-
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ["images.unsplash.com", "res.cloudinary.com"],
+    formats: ["image/avif", "image/webp"],
   },
   experimental: {
-    mdxRs: true,
+    // Page-data collection races on Windows and intermittently fails with
+    // "Cannot find module for page: /…". Collecting in-process is slower but
+    // makes `next build` deterministic.
+    workerThreads: false,
+    cpus: 1,
   },
 };
 
-const withMDX = nextMDX({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypePrism],
-  },
-});
-
-export default withMDX(nextConfig);
+export default nextConfig;

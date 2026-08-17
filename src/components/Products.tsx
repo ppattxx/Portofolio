@@ -1,58 +1,72 @@
 "use client";
-import React from "react";
-import { Product } from "@/types/products";
-import { products } from "@/constants/products";
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { TiltCard } from "./TiltCard";
+import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { categories, products } from "@/constants/products";
+import { ProjectCard } from "./ProjectCard";
 
 export const Products = () => {
+  const [active, setActive] = useState("All");
+
+  const visible = useMemo(
+    () => (active === "All" ? products : products.filter((p) => p.category === active)),
+    [active]
+  );
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-      {products.map((product: Product, idx: number) => (
-        <motion.div
-          key={product.title}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: idx * 0.1 }}
-        >
-          <TiltCard>
-            <Link
-              href={product.slug ? `/projects/${product.slug}` : product.href}
-              className="glass-card overflow-hidden p-4 flex flex-col h-full group block"
+    <div>
+      <div className="no-scrollbar -mx-1 mb-8 flex gap-2 overflow-x-auto px-1 pb-1 md:mb-10">
+        {categories.map((cat) => {
+          const isActive = cat === active;
+          return (
+            <button
+              key={cat}
+              type="button"
+              onClick={() => setActive(cat)}
+              aria-pressed={isActive}
+              className={`relative shrink-0 rounded-full px-4 py-2 text-xs font-medium transition-colors duration-300 sm:text-sm ${
+                isActive ? "text-black" : "text-white/50 hover:text-white/85"
+              }`}
             >
-              <div className="relative w-full h-44 sm:h-48 rounded-xl overflow-hidden">
-                <Image
-                  src={product.thumbnail}
-                  alt={product.title}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              {isActive && (
+                <motion.span
+                  layoutId="filter-pill"
+                  className="absolute inset-0 rounded-full bg-white"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-              </div>
-              <h3 className="font-bold text-base sm:text-lg text-white mt-4 group-hover:text-[rgb(var(--accent))] transition-colors duration-300">
-                {product.title}
-              </h3>
-              <p className="text-[#c7c7c7] text-sm mt-1 line-clamp-3 leading-relaxed">
-                {product.description}
-              </p>
-              {product.stack && (
-                <div className="mt-auto pt-4 flex items-end gap-3 flex-wrap">
-                  {product.stack.slice(0, 4).map((tech: string) => (
-                    <span
-                      key={tech}
-                      className="text-xs text-white/50 group-hover:text-white/80 transition-colors duration-300"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
               )}
-            </Link>
-          </TiltCard>
-        </motion.div>
-      ))}
+              <span className="relative z-10">
+                {cat}
+                <span className={isActive ? "ml-1.5 text-black/45" : "ml-1.5 text-white/25"}>
+                  {cat === "All"
+                    ? products.length
+                    : products.filter((p) => p.category === cat).length}
+                </span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
+      <motion.div
+        layout
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3"
+      >
+        <AnimatePresence mode="popLayout">
+          {visible.map((project, i) => (
+            <motion.div
+              key={project.slug}
+              layout
+              initial={{ opacity: 0, y: 22, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.97 }}
+              transition={{ duration: 0.4, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full"
+            >
+              <ProjectCard project={project} priority={i < 3} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 };

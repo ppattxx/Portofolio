@@ -1,70 +1,141 @@
 "use client";
-import { Paragraph } from "@/components/Paragraph";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { IconBriefcase, IconMapPin, IconSchool, IconWorld } from "@tabler/icons-react";
+import { Reveal, RevealGroup, RevealItem } from "./Reveal";
+import { SpotlightCard } from "./SpotlightCard";
+
+import PosCashier from "/public/images/mock/pos-cashier.png";
+import Shelter1 from "/public/images/Shelter1.png";
+import TA1 from "/public/images/TA1.png";
+import GestureLive from "/public/images/mock/gesture-live.png";
+
+const gallery = [
+  { src: PosCashier, caption: "Calon Mantu POS — cashier screen" },
+  { src: Shelter1, caption: "HRIS Shelter — internal platform" },
+  { src: TA1, caption: "LombokEats — recommender" },
+  { src: GestureLive, caption: "Gesture Detector — MediaPipe" },
+];
+
+const facts = [
+  { icon: IconMapPin, label: "Based in", value: "Surabaya, Indonesia" },
+  { icon: IconSchool, label: "Studied", value: "Informatics & Computer Eng., PENS" },
+  { icon: IconBriefcase, label: "Currently", value: "Full-stack dev at PT Shelter Indonesia" },
+  { icon: IconWorld, label: "Languages", value: "Indonesian (native), English (professional)" },
+];
 
 export default function About() {
-  const images = [
-    "https://images.unsplash.com/photo-1692544350322-ac70cfd63614?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1692374227159-2d3592f274c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1692005561659-cdba32d1e4a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxOHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1692445381633-7999ebc03730?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzM3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60",
-  ];
-
   return (
     <div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-8 md:mb-12">
-        {images.map((image, index) => (
-          <motion.div
-            key={image}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-          >
-            <div className="rounded-xl overflow-hidden glass-card p-1">
-              <Image
-                src={image}
-                width={200}
-                height={200}
-                alt="about"
-                className="rounded-lg object-cover w-full h-32 sm:h-36 md:h-44"
-              />
-            </div>
-          </motion.div>
+      <RevealGroup
+        className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
+        stagger={0.1}
+      >
+        {gallery.map((item) => (
+          <RevealItem key={item.caption}>
+            <SpotlightCard tilt={5} className="rounded-2xl">
+              <figure className="glass-card overflow-hidden p-1.5">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                  <Image
+                    src={item.src}
+                    alt={item.caption}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover object-top transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+                <figcaption className="px-2 py-2 text-[11px] text-white/35">
+                  {item.caption}
+                </figcaption>
+              </figure>
+            </SpotlightCard>
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
 
-      <div className="space-y-4 md:space-y-5 max-w-3xl">
-        <Paragraph className="text-[#c7c7c7] text-sm md:text-base leading-relaxed">
-          Hey there, I&apos;m Dava Rajif - a passionate developer, visual thinker, and admirer of beautiful digital experiences. Welcome to my corner of the web!
-        </Paragraph>
-        <Paragraph className="text-[#c7c7c7] text-sm md:text-base leading-relaxed">
-          Since the beginning of my journey in tech, I&apos;ve been fascinated by how lines of code
-          can evolve into intuitive, responsive, and elegant applications. Whether it&apos;s
-          building mobile apps with Flutter or crafting pixel perfect user interfaces with React
-          and Tailwind CSS, I love turning ideas into real, impactful solutions that blend
-          functionality with aesthetic charm.
-        </Paragraph>
-        <Paragraph className="text-[#c7c7c7] text-sm md:text-base leading-relaxed">
-          But development, to me, is more than just writing code it&apos;s about telling a story
-          through interaction and flow. Every project is an opportunity to solve problems,
-          connect with users, and bring thoughtful design to life. My background in
-          working on various apps ranging from e-commerce platforms to educational
-          and medical tools has shaped me into someone who values both precision and creativity.
-        </Paragraph>
-        <Paragraph className="text-[#c7c7c7] text-sm md:text-base leading-relaxed">
-          What truly sets me apart is my deep appreciation for design. I believe great design isn&apos;t
-          just about how things look, but how they feel. That belief guides every product I touch ensuring
-          it&apos;s not only smooth and functional, but visually pleasing and intuitive.
-        </Paragraph>
-        <Paragraph className="text-[#c7c7c7] text-sm md:text-base leading-relaxed">
-          Through this site, I&apos;m excited to share my projects, insights, and maybe a bit of inspiration.
-          Whether you&apos;re a fellow developer, a designer, or someone simply curious about the intersection
-          of code and creativity—I hope you find something here that sparks your interest.
-        </Paragraph>
-        <Paragraph className="text-[#c7c7c7] text-sm md:text-base leading-relaxed">
-          Let&apos;s create, explore, and push boundaries together. Thanks for stopping by - this is just the beginning of our journey.
-        </Paragraph>
+      <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
+        <div className="space-y-5 text-sm leading-relaxed text-white/60 md:text-base">
+          <Reveal direction="up">
+            <p className="text-lg font-medium text-white/85 md:text-xl">
+              I&apos;m Dava — a full-stack developer who likes systems that people actually
+              have to use on a Monday morning.
+            </p>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.06}>
+            <p>
+              I studied Informatics and Computer Engineering at Politeknik Elektronika Negeri
+              Surabaya, where a lot of the coursework was hands-on rather than theoretical.
+              That suited me: I learn a stack fastest by shipping something with it.
+            </p>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.1}>
+            <p>
+              My first real production experience was an internship at Panasonic
+              Manufacturing Indonesia, building internal tools for the factory floor —
+              inspection logging, shipment data entry, live inventory monitoring. Working
+              next to the people who use the software every shift changed how I think about
+              interfaces: fewer clicks, louder errors, no clever abstractions the operator
+              has to learn.
+            </p>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.14}>
+            <p>
+              Since July 2025 I&apos;ve been at PT Shelter Indonesia as a full-stack
+              developer on their HRIS and career portal — CodeIgniter, MySQL, a lot of
+              legacy code, and the discipline that comes with changing a system that
+              hundreds of records depend on. Alongside that I built{" "}
+              <span className="text-white/85">Calon Mantu POS</span>, a Laravel 12 + React 19
+              point-of-sale suite with QRIS payments and QR self-ordering, which is the
+              largest thing I&apos;ve designed end to end.
+            </p>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.18}>
+            <p>
+              On the research side, my final project became an IEEE-format paper on an
+              interactive restaurant recommender for Lombok — content-based filtering over
+              TF-IDF vectors with a split-interface UX, supervised by the Knowledge
+              Engineering Laboratory at PENS. Building the dataset for it meant writing a
+              resumable scraping pipeline, which turned out to be as interesting as the
+              model.
+            </p>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.22}>
+            <p>
+              Across all of it the pattern is the same: I like the part where a rough
+              business process becomes an explicit schema, and the part where a slow manual
+              recap becomes a button. If that&apos;s the kind of problem you have, we&apos;ll
+              get along.
+            </p>
+          </Reveal>
+        </div>
+
+        <div className="space-y-3">
+          {facts.map((fact, i) => (
+            <motion.div
+              key={fact.label}
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="glass-card flex items-start gap-3 p-4"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/[0.1] bg-white/[0.04] text-[rgb(var(--accent))]">
+                <fact.icon size={17} />
+              </span>
+              <span>
+                <span className="block text-[11px] uppercase tracking-wider text-white/30">
+                  {fact.label}
+                </span>
+                <span className="mt-0.5 block text-sm text-white/75">{fact.value}</span>
+              </span>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );

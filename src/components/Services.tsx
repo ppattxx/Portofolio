@@ -1,81 +1,84 @@
 "use client";
-import { motion } from "framer-motion";
-import { IconCode, IconDeviceMobile, IconServer, IconComponents } from "@tabler/icons-react";
-import { useEffect, useRef, useState } from "react";
+import {
+  IconCode,
+  IconDatabase,
+  IconDeviceMobile,
+  IconRobot,
+  IconServer,
+  IconTopologyStar3,
+} from "@tabler/icons-react";
+import { SectionHeading } from "./SectionHeading";
+import { RevealGroup, RevealItem } from "./Reveal";
+import { SpotlightCard } from "./SpotlightCard";
 
 const skills = [
   {
-    title: "Frontend Development",
+    title: "Frontend Engineering",
     icon: IconCode,
+    body: "React and Next.js with TypeScript and Tailwind. Component systems that survive more than one designer.",
+    tags: ["React 19", "Next.js", "TypeScript", "Tailwind"],
+  },
+  {
+    title: "Backend & APIs",
+    icon: IconServer,
+    body: "Laravel and CodeIgniter services with token auth, webhooks and documented REST surfaces.",
+    tags: ["Laravel 12", "PHP", "Express", "Sanctum"],
   },
   {
     title: "Mobile Development",
     icon: IconDeviceMobile,
+    body: "Flutter apps shipped to the Play Store, built for low-end Android and unreliable networks.",
+    tags: ["Flutter", "Dart", "REST"],
   },
   {
-    title: "Backend Development",
-    icon: IconServer,
+    title: "Data Modelling",
+    icon: IconDatabase,
+    body: "Relational schemas for inventory, orders and HR — normalised, indexed, and auditable.",
+    tags: ["MySQL", "SQLite", "SQLAlchemy"],
   },
   {
-    title: "UI Implementation",
-    icon: IconComponents,
+    title: "Data & Machine Learning",
+    icon: IconRobot,
+    body: "Content-based recommenders, Indonesian NLP preprocessing, and computer vision with MediaPipe.",
+    tags: ["Python", "scikit-learn", "OpenCV"],
+  },
+  {
+    title: "Automation & Delivery",
+    icon: IconTopologyStar3,
+    body: "Resumable scrapers, Excel exports and Docker builds — the plumbing that makes a system usable.",
+    tags: ["Selenium", "Docker", "Nginx"],
   },
 ];
 
-export const Services = () => {
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
+export const Services = () => (
+  <section id="skills" className="relative wrapper py-20 md:py-32">
+    <SectionHeading
+      label="What I do"
+      title="Skills & focus areas."
+      description="I'm most useful where the frontend and the database have to agree with each other."
+    />
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section id="skills" ref={ref} className="relative wrapper py-20 md:py-36">
-      <div className="absolute top-[10%] left-[30%] w-80 h-screen blob-blue pointer-events-none" />
-      <motion.p
-        className="section-label"
-        initial={{ opacity: 0, y: 25 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
-      >
-        What I&apos;m Offering
-      </motion.p>
-      <motion.h2
-        className="font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-2"
-        initial={{ opacity: 0, y: 25 }}
-        animate={isVisible ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        My Skills.
-      </motion.h2>
-      <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-        {skills.map((skill, idx) => (
-          <motion.div
-            key={skill.title}
-            initial={{ opacity: 0, x: -100 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
-          >
-            <div className="rounded-2xl min-h-[140px] sm:min-h-[160px] md:min-h-[180px] flex flex-col items-center justify-center glass card-hover gap-3 md:gap-4 px-4 md:px-6 py-6 md:py-8">
-              <skill.icon className="text-white w-9 h-9 sm:w-11 sm:h-11" strokeWidth={1.5} />
-              <h3 className="text-white text-base sm:text-lg md:text-[20px] font-bold text-center max-w-40">
-                {skill.title}
-              </h3>
+    <RevealGroup className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-3">
+      {skills.map((skill) => (
+        <RevealItem key={skill.title} className="h-full">
+          <SpotlightCard tilt={4} className="rounded-2xl">
+            <div className="glass-card group flex h-full flex-col p-6">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/[0.1] bg-white/[0.04] text-[rgb(var(--accent))] transition-all duration-500 group-hover:scale-110 group-hover:border-[rgb(var(--accent))]/30">
+                <skill.icon size={21} strokeWidth={1.6} />
+              </span>
+              <h3 className="mt-5 text-lg font-bold text-white">{skill.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-white/50">{skill.body}</p>
+              <div className="mt-auto flex flex-wrap gap-1.5 pt-5">
+                {skill.tags.map((tag) => (
+                  <span key={tag} className="tag-pill">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
-};
+          </SpotlightCard>
+        </RevealItem>
+      ))}
+    </RevealGroup>
+  </section>
+);

@@ -1,21 +1,24 @@
-import { Heading } from "@/components/Heading";
-import { Paragraph } from "@/components/Paragraph";
+import type { Metadata } from "next";
 import About from "@/components/About";
-import { Metadata } from "next";
+import { SectionHeading } from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "About | Dava Rajif",
-  description: "",
+  title: "About",
+  description:
+    "Dava Rajif Cahyadiansyah — full-stack developer from Surabaya, graduate of Informatics & Computer Engineering at PENS.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen wrapper py-20 md:py-28">
-      <p className="section-label">Get to know me</p>
-      <Heading className="font-black text-3xl sm:text-4xl lg:text-5xl text-white mt-2 mb-8 md:mb-12">
-        About Me.
-      </Heading>
-      <About />
+    <div className="wrapper min-h-screen py-16 md:py-24">
+      <SectionHeading
+        label="Get to know me"
+        title="About me."
+        description="Where I've worked, what I studied, and the kind of problems I keep coming back to."
+      />
+      <div className="mt-10 md:mt-14">
+        <About />
+      </div>
     </div>
   );
 }

@@ -1,159 +1,164 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 
-const isLandingPage = (pathname: string) => pathname === "/";
-
-const navItems = [
-  { href: "#projects", label: "Projects", scrollId: "projects" },
-  { href: "#companies", label: "Companies", scrollId: "companies" },
-  { href: "#tech-stack", label: "Tech Stack", scrollId: "tech-stack" },
-  { href: "#contact", label: "Contact", scrollId: "contact" },
-];
-
-const pageLinks = [
-  { href: "/about", label: "About" },
+const PAGES = [
+  { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" },
   { href: "/resume", label: "Resume" },
   { href: "/contact", label: "Contact" },
 ];
 
-function NavLink({ href, label, onClick }: { href: string; label: string; onClick?: () => void }) {
+const SECTIONS = [
+  { href: "#projects", label: "Work" },
+  { href: "#experience", label: "Experience" },
+  { href: "#skills", label: "Skills" },
+  { href: "#tech-stack", label: "Stack" },
+];
+
+export const Navbar = () => {
   const pathname = usePathname();
-  const isActive = isLandingPage(pathname) && href.startsWith("#") ? false : pathname === href;
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === "/";
 
-  if (isActive) {
-    return (
-      <Link href={href} onClick={onClick} className="text-white font-medium">
-        {label}
-      </Link>
-    );
-  }
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isLandingPage(pathname) && href.startsWith("#")) {
-      e.preventDefault();
-      const id = href.replace("#", "");
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }
-    onClick?.();
+  useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  const scrollTo = (e: React.MouseEvent, href: string) => {
+    if (!isHome) return;
+    e.preventDefault();
+    document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth" });
+    setOpen(false);
   };
 
   return (
-    <Link href={href} onClick={handleClick}>
-      <div className="overflow-hidden relative cursor-pointer group py-1">
-        <div className="flex">
-          {label.split("").map((char, i) => (
-            <span
-              key={i}
-              className="relative inline-block transition-transform duration-300 group-hover:-translate-y-full text-white"
-              style={{ transitionDelay: `${i * 30}ms` }}
-            >
-              {char}
-            </span>
-          ))}
-        </div>
-        <div className="absolute inset-0 flex">
-          {label.split("").map((char, i) => (
-            <span
-              key={i}
-              className="relative inline-block translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-white font-medium"
-              style={{ transitionDelay: `${i * 30}ms` }}
-            >
-              {char}
-            </span>
-          ))}
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-export const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
-
-  return (
-    <header className="fixed top-0 left-0 w-full text-white z-50 backdrop-blur-2xl">
-      <div className="wrapper flex items-center justify-between py-4">
-        <Link href="/">
-          <h1 className="text-xl sm:text-2xl font-bold text-white">Dava Rajif</h1>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "border-b border-white/[0.07] bg-[rgb(var(--bg))]/72 backdrop-blur-xl"
+          : "border-b border-transparent"
+      }`}
+    >
+      <nav className="wrapper flex h-16 items-center justify-between">
+        <Link href="/" className="group flex items-center gap-2.5">
+          <span className="text-base font-bold tracking-tight text-white sm:text-lg">
+            Dava Rajif
+          </span>
         </Link>
-        <div className="flex items-center gap-x-2 md:gap-x-6">
-          <div className="order-last block md:hidden">
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="inline-flex items-center justify-center rounded-md transition-colors border border-white/20 hover:border-white/40 text-white h-10 w-10 p-2"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <IconX size={20} /> : <IconMenu2 size={20} />}
-            </button>
-          </div>
-          <ul className="order-first hidden md:flex flex-row gap-x-6">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <NavLink href={item.href} label={item.label} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
 
-      {mobileOpen && (
-        <div className="md:hidden border-t border-white/10 max-h-[80vh] overflow-y-auto">
-          <div className="wrapper py-4 space-y-3">
-            <p className="text-xs uppercase tracking-widest text-white/30 px-3">On this page</p>
-            {navItems.map((item) => {
-              const isActive = isLandingPage(pathname) && item.href.startsWith("#") ? false : pathname === item.href;
-              const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-                if (isLandingPage(pathname) && item.href.startsWith("#")) {
-                  e.preventDefault();
-                  const id = item.href.replace("#", "");
-                  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-                }
-                setMobileOpen(false);
-              };
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleClick}
-                  className={`block py-2.5 px-3 rounded-lg text-sm transition-colors ${
-                    isActive
-                      ? "text-white bg-white/5"
-                      : "text-white/60 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            <hr className="border-white/10 my-3" />
-            <p className="text-xs uppercase tracking-widest text-white/30 px-3">Pages</p>
-            {pageLinks.map((item) => {
-              const isActive = pathname === item.href;
-              const handleClick = () => setMobileOpen(false);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={handleClick}
-                  className={`block py-2.5 px-3 rounded-lg text-sm transition-colors ${
-                    isActive
-                      ? "text-white bg-white/5"
-                      : "text-white/60 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
+        {/* desktop */}
+        <div className="hidden items-center gap-1 md:flex">
+          {(isHome ? SECTIONS : []).map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={(e) => scrollTo(e, item.href)}
+              className="rounded-lg px-3 py-2 text-sm text-white/50 transition-colors duration-300 hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))}
+          {isHome && <span className="mx-2 h-4 w-px bg-white/10" />}
+          {PAGES.filter((p) => !(isHome && p.href === "/")).map((page) => {
+            const active = pathname === page.href;
+            return (
+              <Link
+                key={page.href}
+                href={page.href}
+                className={`relative rounded-lg px-3 py-2 text-sm transition-colors duration-300 ${
+                  active ? "text-white" : "text-white/50 hover:text-white"
+                }`}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-0 rounded-lg bg-white/[0.08]"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">{page.label}</span>
+              </Link>
+            );
+          })}
         </div>
-      )}
+
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          className="glass flex h-10 w-10 items-center justify-center rounded-lg text-white md:hidden"
+        >
+          {open ? <IconX size={18} /> : <IconMenu2 size={18} />}
+        </button>
+      </nav>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden border-t border-white/[0.07] bg-[rgb(var(--bg))]/95 backdrop-blur-xl md:hidden"
+          >
+            <div className="wrapper max-h-[70svh] space-y-1 overflow-y-auto py-4">
+              {isHome && (
+                <>
+                  <p className="px-3 pb-1 text-[10px] uppercase tracking-[0.2em] text-white/25">
+                    On this page
+                  </p>
+                  {SECTIONS.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={(e) => scrollTo(e, item.href)}
+                      className="block rounded-lg px-3 py-2.5 text-sm text-white/60 transition-colors hover:bg-white/[0.05] hover:text-white"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                  <div className="my-2 h-px bg-white/[0.07]" />
+                </>
+              )}
+              <p className="px-3 pb-1 text-[10px] uppercase tracking-[0.2em] text-white/25">
+                Pages
+              </p>
+              {PAGES.map((page) => (
+                <Link
+                  key={page.href}
+                  href={page.href}
+                  className={`block rounded-lg px-3 py-2.5 text-sm transition-colors ${
+                    pathname === page.href
+                      ? "bg-white/[0.07] text-white"
+                      : "text-white/60 hover:bg-white/[0.05] hover:text-white"
+                  }`}
+                >
+                  {page.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
