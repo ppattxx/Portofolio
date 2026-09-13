@@ -73,11 +73,12 @@ export default function About() {
           <Reveal direction="up" delay={0.1}>
             <p>
               My first real production experience was an internship at Panasonic
-              Manufacturing Indonesia, building internal tools for the factory floor —
-              inspection logging, shipment data entry, live inventory monitoring. Working
-              next to the people who use the software every shift changed how I think about
-              interfaces: fewer clicks, louder errors, no clever abstractions the operator
-              has to learn.
+              Manufacturing Indonesia, working on a manufacturing-digitalisation project —
+              a desktop web app for OK/NG spare-part inspection, a mobile app for container
+              truck shipment data, and exposure to a web-based inventory monitoring system
+              with multi-level approval. Working next to the people who use the software
+              every shift changed how I think about interfaces: fewer clicks, louder errors,
+              no clever abstractions the operator has to learn.
             </p>
           </Reveal>
 

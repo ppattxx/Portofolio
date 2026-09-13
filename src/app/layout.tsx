@@ -18,7 +18,7 @@ const description =
   "Dava Rajif Cahyadiansyah — full-stack developer from Surabaya. Laravel, React, Flutter and Python. Building point-of-sale, HR and recommendation systems that run in production.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://davarajif.vercel.app"),
+  metadataBase: new URL("https://acahyadava.vercel.app"),
   title: {
     default: "Dava Rajif — Full-stack Developer",
     template: "%s | Dava Rajif",

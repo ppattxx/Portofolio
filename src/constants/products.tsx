@@ -93,17 +93,17 @@ export const products: Product[] = [
     role: "Full-stack Developer",
     date: "Jul 2025 — Present",
     description:
-      "Internal HRIS handling employee records, documents, multi-level approvals and payroll-adjacent reporting for an outsourcing company.",
+      "Internal HRIS covering recruitment, the full employee lifecycle, contract monitoring, payroll and operational reporting for an outsourcing company.",
     thumbnail: Shelter1,
     images: [Shelter1, Shelter2],
     stack: ["PHP", "CodeIgniter", "MySQL", "JavaScript", "Bootstrap", "jQuery"],
     results:
-      "Maintained and extended the HRIS modules used daily by the HR team — candidate intake, employee data, document handling and export-ready reports.",
+      "Maintained and extended the HRIS modules used daily by the HR team — recruitment, employee data, contract and document handling, payroll and operational reporting.",
     highlights: [
-      "Extended candidate and employee modules, including document upload, versioning and expiry reminders.",
-      "Implemented multi-level approval flows so requests route to the right approver instead of a shared inbox.",
-      "Built export-ready reports (Excel) that replaced a manual monthly recap.",
-      "Refactored legacy admin screens for faster data entry and fewer input errors.",
+      "Owned recruitment and employee-lifecycle modules: candidate registration and interviews, employee data, transfers, resignations and bulk contract-status updates.",
+      "Implemented contract-monitoring workflows and employee document handling, including PKWT documents.",
+      "Delivered HR operational features — attendance and leave import, payroll, daily appraisal and Workload Analysis (WLA).",
+      "Built monitoring dashboards and export-ready reports that replaced manual recaps for reporting and decision support.",
     ],
     metrics: [
       { label: "Modules owned", value: "6+" },
@@ -114,14 +114,15 @@ export const products: Product[] = [
       <div className="space-y-4">
         <p>
           Shelter runs an outsourcing business, which means HR data volume is the product.
-          The HRIS is a CodeIgniter application I work on day to day: candidate pipeline,
-          employee master data, document lifecycle, approvals and reporting.
+          The HRIS is a CodeIgniter application I work on day to day: recruitment and the
+          employee lifecycle, contract monitoring and PKWT documents, attendance and leave
+          import, payroll, daily appraisal, Workload Analysis and reporting dashboards.
         </p>
         <p>
-          Most of my work here is unglamorous and high impact — making an approval chain
-          explicit, making an export match what finance actually needs, making a form fail
-          loudly instead of silently. Working inside a legacy codebase taught me to change
-          things carefully and to leave each screen better than I found it.
+          A lot of the work is translating an HR operational need into an explicit workflow —
+          role-based access, validation, and status that the system can actually track. Working
+          inside a legacy codebase taught me to change things carefully and to leave each
+          screen better than I found it.
         </p>
       </div>
     ),

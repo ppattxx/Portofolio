@@ -17,13 +17,13 @@ export const timeline: TimelineItem[] = [
     type: "work",
     location: "Surabaya, Indonesia",
     description:
-      "Building and maintaining the internal HRIS and the public career portal used by the recruitment team.",
+      "Translating HR operational needs into a CodeIgniter HRIS — workflow design, validation, role-based access and database integration.",
     stack: ["PHP", "CodeIgniter", "MySQL", "JavaScript", "Bootstrap", "Docker"],
     responsibilities: [
-      "Own candidate and employee modules end to end, from database schema to admin screens.",
-      "Implemented document handling with versioning, plus multi-level approval routing.",
-      "Built export-ready reporting that replaced a manual monthly recap.",
-      "Shipped the public career portal and connected it to the internal applicant pipeline.",
+      "Turned HR operational requirements into system solutions across the HRIS: workflow design, validation, role-based access and database integration.",
+      "Owned recruitment and employee-lifecycle modules — candidate registration and interviews, employee data, transfers, resignations and bulk contract-status updates.",
+      "Implemented contract-monitoring workflows and employee document handling, including PKWT documents, so personnel administration is traceable through the system.",
+      "Delivered HR operational features — attendance and leave import, payroll, daily appraisal, Workload Analysis (WLA) and monitoring dashboards for reporting and decision support.",
     ],
   },
   {
@@ -31,15 +31,14 @@ export const timeline: TimelineItem[] = [
     title: "Software Developer (Internship)",
     date: "Jan 2025 — Jun 2025",
     type: "work",
-    location: "Jakarta, Indonesia",
+    location: "East Jakarta, Indonesia",
     description:
-      "Internal tooling to shorten manufacturing and logistics processes on the factory floor.",
+      "Manufacturing-process digitalisation — internal web and mobile tools for the factory floor.",
     stack: ["Web", "Mobile", "SQL"],
     responsibilities: [
-      "Developed a desktop web app for OK/NG spare-part inspection before production.",
-      "Built a mobile app for container truck shipment data entry.",
-      "Designed and implemented a real-time inventory monitoring system.",
-      "Introduced multi-level approval for inventory control and traceability.",
+      "Worked on a manufacturing digitalisation project, developing a desktop web app to check OK/NG status of production spare parts.",
+      "Supported development of a mobile app for recording shipment data on container trucks.",
+      "Gained exposure to a web-based inventory monitoring system for incoming, outgoing and disposal goods with a multi-level approval flow.",
     ],
   },
   {
