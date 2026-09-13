@@ -1,58 +1,43 @@
 "use client";
+import type { ComponentType } from "react";
 import {
   SiDart,
-  SiDocker,
-  SiExpress,
   SiFigma,
   SiFlutter,
   SiGit,
-  SiGitlab,
+  SiGithub,
   SiJavascript,
-  SiLaravel,
   SiMysql,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPandas,
+  SiOpenjdk,
   SiPhp,
+  SiPostgresql,
   SiPython,
   SiReact,
-  SiScikitlearn,
-  SiSqlite,
-  SiTailwindcss,
-  SiTypescript,
-  SiVite,
 } from "react-icons/si";
-import type { IconType } from "react-icons";
+import { IconApi } from "@tabler/icons-react";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
-type TechItem = { name: string; Icon: IconType; color: string };
+type IconComponent = ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
+type TechItem = { name: string; Icon: IconComponent; color: string };
 
 const tech: TechItem[] = [
-  { name: "TypeScript", Icon: SiTypescript, color: "#3178C6" },
-  { name: "React", Icon: SiReact, color: "#61DAFB" },
-  { name: "Next.js", Icon: SiNextdotjs, color: "#FFFFFF" },
-  { name: "Tailwind", Icon: SiTailwindcss, color: "#38BDF8" },
-  { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
-  { name: "Vite", Icon: SiVite, color: "#A855F7" },
-  { name: "Laravel", Icon: SiLaravel, color: "#FF2D20" },
   { name: "PHP", Icon: SiPhp, color: "#8892BF" },
-  { name: "Node.js", Icon: SiNodedotjs, color: "#5FA04E" },
-  { name: "Express", Icon: SiExpress, color: "#FFFFFF" },
-  { name: "MySQL", Icon: SiMysql, color: "#4479A1" },
-  { name: "SQLite", Icon: SiSqlite, color: "#59B6E4" },
-  { name: "Flutter", Icon: SiFlutter, color: "#54C5F8" },
+  { name: "JavaScript", Icon: SiJavascript, color: "#F7DF1E" },
+  { name: "React.js", Icon: SiReact, color: "#61DAFB" },
   { name: "Dart", Icon: SiDart, color: "#2BB7F6" },
+  { name: "Flutter", Icon: SiFlutter, color: "#54C5F8" },
+  { name: "Java", Icon: SiOpenjdk, color: "#EA2D2E" },
   { name: "Python", Icon: SiPython, color: "#FFD343" },
-  { name: "scikit-learn", Icon: SiScikitlearn, color: "#F89939" },
-  { name: "Pandas", Icon: SiPandas, color: "#C9CBCF" },
-  { name: "Docker", Icon: SiDocker, color: "#2496ED" },
+  { name: "PostgreSQL", Icon: SiPostgresql, color: "#4169E1" },
+  { name: "SQL / MySQL", Icon: SiMysql, color: "#4479A1" },
+  { name: "REST API", Icon: IconApi, color: "#38BDF8" },
   { name: "Git", Icon: SiGit, color: "#F05032" },
-  { name: "GitLab", Icon: SiGitlab, color: "#FC6D26" },
+  { name: "GitHub", Icon: SiGithub, color: "#FFFFFF" },
   { name: "Figma", Icon: SiFigma, color: "#F24E1E" },
 ];
 
-const rows = [tech.slice(0, 7), tech.slice(7, 14), tech.slice(14, 21)];
+const rows = [tech.slice(0, 7), tech.slice(7, 13)];
 
 const TechPill = ({ item }: { item: TechItem }) => (
   <div className="group flex shrink-0 items-center gap-2.5 rounded-xl border border-white/[0.08] bg-white/[0.035] px-4 py-2.5 text-sm font-medium text-white/70 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] hover:text-white">
