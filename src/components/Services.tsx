@@ -1,11 +1,11 @@
 "use client";
 import {
+  IconApi,
   IconCode,
   IconDatabase,
   IconDeviceMobile,
-  IconRobot,
   IconServer,
-  IconTopologyStar3,
+  IconUsersGroup,
 } from "@tabler/icons-react";
 import { SectionHeading } from "./SectionHeading";
 import { RevealGroup, RevealItem } from "./Reveal";
@@ -15,38 +15,38 @@ const skills = [
   {
     title: "Frontend Engineering",
     icon: IconCode,
-    body: "React and Next.js with TypeScript and Tailwind. Component systems that survive more than one designer.",
-    tags: ["React 19", "Next.js", "TypeScript", "Tailwind"],
+    body: "React.js and JavaScript frontends with Tailwind. Component systems that survive more than one designer.",
+    tags: ["React.js", "JavaScript", "Tailwind"],
   },
   {
-    title: "Backend & APIs",
+    title: "Backend & REST API",
     icon: IconServer,
-    body: "Laravel and CodeIgniter services with token auth, webhooks and documented REST surfaces.",
-    tags: ["Laravel 12", "PHP", "Express", "Sanctum"],
+    body: "Laravel and CodeIgniter services with role-based access, validation and documented REST surfaces.",
+    tags: ["PHP", "Laravel", "CodeIgniter", "REST API"],
   },
   {
     title: "Mobile Development",
     icon: IconDeviceMobile,
     body: "Flutter apps shipped to the Play Store, built for low-end Android and unreliable networks.",
-    tags: ["Flutter", "Dart", "REST"],
+    tags: ["Flutter", "Dart", "REST API"],
   },
   {
-    title: "Data Modelling",
+    title: "Databases",
     icon: IconDatabase,
-    body: "Relational schemas for inventory, orders and HR — normalised, indexed, and auditable.",
-    tags: ["MySQL", "SQLite", "SQLAlchemy"],
+    body: "Relational schemas for inventory, orders and HR — designed in PostgreSQL and MySQL, normalised and auditable.",
+    tags: ["SQL", "PostgreSQL", "MySQL"],
   },
   {
-    title: "Data & Machine Learning",
-    icon: IconRobot,
-    body: "Content-based recommenders, Indonesian NLP preprocessing, and computer vision with MediaPipe.",
-    tags: ["Python", "scikit-learn", "OpenCV"],
+    title: "Software Quality Assurance",
+    icon: IconApi,
+    body: "Manual QA, structured test scenarios and datasets — making sure a build behaves before it ships.",
+    tags: ["QA Testing", "Test Scenarios", "Figma"],
   },
   {
-    title: "Automation & Delivery",
-    icon: IconTopologyStar3,
-    body: "Resumable scrapers, Excel exports and Docker builds — the plumbing that makes a system usable.",
-    tags: ["Selenium", "Docker", "Nginx"],
+    title: "Project & Collaboration",
+    icon: IconUsersGroup,
+    body: "Agile workflow design, project documentation and team coordination across cross-functional projects.",
+    tags: ["Agile", "Workflow Design", "Documentation", "Git/GitHub"],
   },
 ];
 

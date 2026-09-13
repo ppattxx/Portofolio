@@ -10,12 +10,24 @@ export const metadata: Metadata = {
 };
 
 const CORE = [
-  { group: "Languages", items: ["TypeScript", "JavaScript", "PHP", "Python", "Dart", "SQL"] },
-  { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS", "Zustand", "TanStack Query"] },
-  { group: "Backend", items: ["Laravel", "CodeIgniter", "Express", "Flask", "REST APIs"] },
-  { group: "Data", items: ["MySQL", "SQLite", "Pandas", "scikit-learn", "Selenium"] },
-  { group: "Mobile", items: ["Flutter", "Dart"] },
-  { group: "Tooling", items: ["Git", "GitLab", "Docker", "Nginx", "Figma"] },
+  {
+    group: "Programming",
+    items: ["PHP", "JavaScript", "React.js", "Dart/Flutter", "Java", "Python"],
+  },
+  {
+    group: "Technical",
+    items: ["Web & Mobile Development", "REST API", "SQL / PostgreSQL", "Git/GitHub", "Figma"],
+  },
+  {
+    group: "Project & Collaboration",
+    items: [
+      "Agile Development",
+      "Workflow Design",
+      "Project Documentation",
+      "Team Coordination",
+      "Software Quality Assurance",
+    ],
+  },
 ];
 
 export default function ResumePage() {
